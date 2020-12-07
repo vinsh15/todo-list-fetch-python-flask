@@ -1,24 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
+
+//incorpora un componente llamado lista
 
 //include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
 
 //create your first component
-export function Home() {
+const Home = () => {
+	const [tarea, guardarTarea] = useState("");
+	const [lista, guardarLista] = useState([]);
+
 	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+		<div className="container-fluid col-8">
+			<h1 className="text-center">To Do List!</h1>
+			<div className="Group">
+				<input
+					value={tarea}
+					onKeyDown={e => {
+						if (e.keyCode == 13) {
+							let nuevaLista = [];
+							for (let i = 0; i < lista.length; i++) {
+								nuevaLista.push(lista[i]);
+							}
+							nuevaLista.push(tarea);
+							guardarLista(nuevaLista);
+							guardarTarea("");
+						}
+					}}
+					onChange={e => {
+						guardarTarea(e.target.value);
+					}}
+					type="text"
+					placeholder="Ingresa tus tareas aquí"
+				/>
+				<div className="card">
+					<ul className="list-group list-group-flush">
+						{lista.map((cosas, index) => {
+							return (
+								<li key={index} className="list-group-item">
+									{cosas}
+								</li>
+							);
+						})}
+					</ul>
+				</div>
+			</div>
+			<div className="card-footer text-muted">3 elements</div>
 		</div>
 	);
-}
+};
+
+export default Home;
