@@ -36,8 +36,11 @@ const Home = () => {
 					<ul className="list-group list-group-flush">
 						{lista.map((cosas, index) => {
 							return (
-								<li key={index} className="list-group-item">
+								<li
+									key={index}
+									className="list-group-item d-flex justify-content-between">
 									{cosas}
+									<i className="fas fa-times" />
 								</li>
 							);
 						})}
