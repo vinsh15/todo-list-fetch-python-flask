@@ -1,9 +1,5 @@
 import React, { useState } from "react";
 
-//incorpora un componente llamado lista
-
-//include images into your bundle
-
 //create your first component
 const Home = () => {
 	const [tarea, guardarTarea] = useState("");
@@ -45,15 +41,15 @@ const Home = () => {
 							return (
 								<li
 									key={index}
-									className="list-group-item d-flex justify-content-between">
+									className="list-group-item d-flex justify-content-center">
 									{cosas}
-									<button
-										className="btn btn-light"
+									<div
+										className="miBoton"
 										onClick={e => {
 											eliminaItems(index);
 										}}>
 										<i className="fas fa-times" />
-									</button>
+									</div>
 								</li>
 							);
 						})}
