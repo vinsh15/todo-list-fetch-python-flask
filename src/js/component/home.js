@@ -8,10 +8,17 @@ import React, { useState } from "react";
 const Home = () => {
 	const [tarea, guardarTarea] = useState("");
 	const [lista, guardarLista] = useState([]);
+	//crear una función para eliminar ítems del arreglo desde un botón
+	const eliminaItems = indexItem => {
+		guardarLista(prevState =>
+			prevState.filter((todo, index) => index !== indexItem)
+		);
+	};
 
+	//declarar funciones
 	return (
 		<div className="container-fluid col-8">
-			<h1 className="text-center">To Do List!</h1>
+			<h1 className="text-center">Lista de tareas</h1>
 			<div className="Group">
 				<input
 					value={tarea}
@@ -40,14 +47,22 @@ const Home = () => {
 									key={index}
 									className="list-group-item d-flex justify-content-between">
 									{cosas}
-									<i className="fas fa-times" />
+									<button
+										className="btn btn-light"
+										onClick={e => {
+											eliminaItems(index);
+										}}>
+										<i className="fas fa-times" />
+									</button>
 								</li>
 							);
 						})}
 					</ul>
 				</div>
 			</div>
-			<div className="card-footer text-muted">3 elements</div>
+			<div className="card-footer text-muted">
+				<p>{lista.length} tareas pendientes</p>
+			</div>
 		</div>
 	);
 };
