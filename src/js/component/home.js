@@ -41,15 +41,15 @@ const Home = () => {
 							return (
 								<li
 									key={index}
-									className="list-group-item d-flex justify-content-center">
+									className="list-group-item d-flex justify-content-between">
 									{cosas}
-									<div
-										className="miBoton"
+									<button
+										className="miBoton btn btn-light"
 										onClick={e => {
 											eliminaItems(index);
 										}}>
 										<i className="fas fa-times" />
-									</div>
+									</button>
 								</li>
 							);
 						})}
